@@ -18,10 +18,8 @@ def tx_test():
 def values_test():
     val = 0
     for i in range (1,len(block.transactions)):
-        #for j in range(len(block.transactions[i].inputs)):
+        for j in range(len(block.transactions[i].inputs)):
             val += block.transactions[i].inputs[j].value
         for k in range(len(block.transactions[i].outputs)):
             val += block.transactions[i].outputs[k].value
-
-	print(val)
-
+    print(val)

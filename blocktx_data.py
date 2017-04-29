@@ -77,6 +77,6 @@ def in_out_valPrint(hash_order):
                                     block.transactions[transaction].outputs[j].script ]
                 print(output_val_list)
         else:
-            print("Given order is not definded")
+            print("Given order is not defined")
             
     return 0

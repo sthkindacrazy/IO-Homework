@@ -36,7 +36,7 @@ def avg_tx_val(block_hash):
 def avg_tx_fee(block_hash):
     block = blockexplorer.get_block(block_hash)
     fee = (block.fee/block.n_tx)/btcDigit
-    return fee/btcDigit
+    return fee
 
 def avg_tx_size(block_hash):
     block = blockexplorer.get_block(block_hash)

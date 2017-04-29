@@ -33,3 +33,10 @@ def tot_tx_val(block_hash):
         for k in range(len(block.transactions[i].outputs)):
             val += block.transactions[i].outputs[k].value
     return val
+
+def tot_tx_size(block_hash):
+    block = blockexplorer.get_block(block_hash)
+    tot_size = 0
+    for i in range(block.n_tx):
+        tot_size += block.transactions[i].size
+    return tot_size

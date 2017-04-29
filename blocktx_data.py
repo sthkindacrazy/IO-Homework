@@ -21,15 +21,17 @@ def tot_tx(block_hash):
     block = blockexplorer.get_block(block_hash)
     return block.n_tx
 
-#total produced BTC-> value, divided by total transactions
+#total produced BTC-> values by transactions, divided by total transactions
 def avg_tx_val(block_hash):
     block = blockexplorer.get_block(block_hash)
     tot_val = 0
     for transaction in range(block.n_tx):
         n_input = len(block.transactions[transaction].inputs)
-        for input in range(n_input):
-            tot_val += block.transactions[transaction].inputs[input].value
-    tot_val += compBTC
+        n_output = len(block.transactions[transaction].outputs)
+        for i in range(n_input):
+            tot_val += block.transactions[transaction].inputs[i].value
+        for j in range(n_output):
+            tot_val += block.transactions[transaction].outputs[j].value
     return (tot_val/block.n_tx)/btcDigit
 
 #total fee divided by total transactions(tot_tx)

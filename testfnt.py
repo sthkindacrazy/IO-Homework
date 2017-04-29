@@ -10,6 +10,7 @@ def test_tot_tx():
     
 def test_avg_tx_val():
     return 0
+
 def test_avg_tx_fee():
     checkval1 = 2.30371195/2757
 	assert(abs(b.avg_tx_fee("000000000000000000b37c165a79af2a4c2663634d233c0bf09d099e54713bb6") - checkval1) <= 0.0000001)

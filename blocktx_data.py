@@ -10,15 +10,38 @@
 #import given API
 from blockchain import blockexplorer
 
+#To make floating point as depicted in the chart
+#Originally it returns int value 281XXX for example
+#but Charted data represents 2.81XXX with 8 digits under the point
+btcDigit = 100000000
+#compensation BTC for transactions
+compBTC = 125000000
+
 def tot_tx(block_hash):
-    return 0
-    
+    block = blockexplorer.get_block(block_hash)
+    return block.n_tx
+
+#total produced BTC-> value, divided by total transactions
 def avg_tx_val(block_hash):
-    return 0
-    
+    block = blockexplorer.get_block(block_hash)
+    tot_val = 0
+    for transaction in range(block.n_tx):
+        n_input = len(block.transactions[transaction].inputs)
+        for input in range(n_input):
+            tot_val += block.transactions[transaction].inputs[input].value
+    tot_val += compBTC
+    return (tot_val/block.n_tx)/btcDigit
+
+#total fee divided by total transactions(tot_tx)
 def avg_tx_fee(block_hash):
-    return 0
+    block = blockexplorer.get_block(block_hash)
+    fee = (block.fee/block.n_tx)/btcDigit
+    return fee/btcDigit
 
 def avg_tx_size(block_hash):
-    return 0
+    block = blockexplorer.get_block(block_hash)
+    tot_size = 0
+    for i in range(block.n_tx):
+        tot_size += block.transactions[i].size
+    return (tot_size/block.n_tx)
 

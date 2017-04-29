@@ -25,7 +25,7 @@ def tot_tx(block_hash):
 def avg_tx_val(block_hash):
     block = blockexplorer.get_block(block_hash)
     tot_val = 0
-    for transaction in range(block.n_tx):
+    for transaction in range(1,block.n_tx):
         n_input = len(block.transactions[transaction].inputs)
         n_output = len(block.transactions[transaction].outputs)
         for i in range(n_input):

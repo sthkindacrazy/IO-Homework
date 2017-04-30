@@ -19,12 +19,10 @@ btcDigit = 100000000
 compBTC = 125000000
 
 def tot_tx(block_hash):
-    block = blockexplorer.get_block(block_hash)
     return block.n_tx
 
 #total produced BTC-> values by transactions, divided by total transactions
-def avg_tx_val(block_hash):
-    block = blockexplorer.get_block(block_hash)
+def avg_tx_val(block):
     tot_val = 0
     for transaction in range(block.n_tx):
         n_output = len(block.transactions[transaction].outputs)
@@ -33,18 +31,23 @@ def avg_tx_val(block_hash):
     return (tot_val/block.n_tx)/btcDigit
 
 #total fee divided by total transactions(tot_tx)
-def avg_tx_fee(block_hash):
-    block = blockexplorer.get_block(block_hash)
+def avg_tx_fee(block):
     fee = (block.fee/block.n_tx)/btcDigit
     return fee
 
-def avg_tx_size(block_hash):
-    block = blockexplorer.get_block(block_hash)
+def avg_tx_size(block):
     tot_size = 0
     for i in range(block.n_tx):
         tot_size += block.transactions[i].size
     return (tot_size/block.n_tx)
 
+def print_tx_parameters(block_hash):
+    block = blockexplorer.get_block(block_hash)
+    print("Total number of transactions : " + str(tot_tx(block)))
+    print("Average value of transactions : " + str(avg_tx_val(block)))
+    print("Average fee of transactions : " + str(avg_tx_fee(block)))
+    print("Average size of transactions : " + str(avg_tx_size(block)))
+    
 #problem 2
 #Here function input is hash_order which is block_hash (input/output) connected with space
 #e.g [hash_value] input or [hash_value] output
@@ -76,8 +79,6 @@ def in_out_valPrint(hash_order):
     pattern = re.compile("[A-Za-z0-9]+")
     block_hash = pattern.search(args[0]).group()
     order = args[1]
-    
-    block = blockexplorer.get_block(block_hash)
     if (order == "input"):
         input_print(block_hash)
     else:

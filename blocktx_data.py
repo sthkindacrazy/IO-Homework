@@ -8,7 +8,7 @@
     function input is block hash value
 """
 #import given API
-from blockchain import blockexplorer
+import blockexplorer
 import re
 
 #To make floating point as depicted in the chart

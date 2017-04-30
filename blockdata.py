@@ -26,11 +26,8 @@ def tot_tx(block_hash):
 def avg_tx_val(block_hash):
     block = blockexplorer.get_block(block_hash)
     tot_val = 0
-    for transaction in range(1,block.n_tx):
-        n_input = len(block.transactions[transaction].inputs)
+    for transaction in range(block.n_tx):
         n_output = len(block.transactions[transaction].outputs)
-        for i in range(n_input):
-            tot_val += block.transactions[transaction].inputs[i].value
         for j in range(n_output):
             tot_val += block.transactions[transaction].outputs[j].value
     return (tot_val/block.n_tx)/btcDigit
@@ -52,6 +49,28 @@ def avg_tx_size(block_hash):
 #Here function input is hash_order which is block_hash (input/output) connected with space
 #e.g [hash_value] input or [hash_value] output
 
+def input_print(block_hash):
+    block = blockexplorer.get_block(block_hash)
+    for transaction in range(1,block.n_tx):
+        n_input = len(block.transactions[transaction].inputs)
+        for i in range(n_input):
+            input_val_list = [block.transactions[transaction].inputs[i].n, 
+                              block.transactions[transaction].inputs[i].value,
+                              block.transactions[transaction].inputs[i].tx_index,
+                              block.transactions[transaction].inputs[i].script ]
+            print(input_val_list)
+
+def output_print(block_hash):
+    block = blockexplorer.get_block(block_hash)
+    for transaction in range(1,block.n_tx):
+        n_output = len(block.transactions[transaction].outputs)
+        for j in range(n_output):
+            output_val_list = [block.transactions[transaction].outputs[j].n,
+                               block.transactions[transaction].outputs[j].value,
+                               block.transactions[transaction].outputs[j].tx_index,
+                               block.transactions[transaction].outputs[j].script ]
+            print(output_val_list)
+
 def in_out_valPrint(hash_order):
     args = hash_order.split()
     pattern = re.compile("[A-Za-z0-9]+")
@@ -59,24 +78,7 @@ def in_out_valPrint(hash_order):
     order = args[1]
     
     block = blockexplorer.get_block(block_hash)
-    for transaction in range(1,block.n_tx):
-        n_input = len(block.transactions[transaction].inputs)
-        n_output = len(block.transactions[transaction].outputs)
-        if(order == "input"):
-            for i in range(n_input):
-                input_val_list = [block.transactions[transaction].inputs[i].n, 
-                                  block.transactions[transaction].inputs[i].value,
-                                  block.transactions[transaction].inputs[i].tx_index,
-                                  block.transactions[transaction].inputs[i].script ]
-                print(input_val_list)
-        elif(order == "output"):
-            for j in range(n_output):
-                output_val_list = [block.transactions[transaction].outputs[j].n,
-                                    block.transactions[transaction].outputs[j].value,
-                                    block.transactions[transaction].outputs[j].tx_index,
-                                    block.transactions[transaction].outputs[j].script ]
-                print(output_val_list)
-        else:
-            print("Given order is not defined")
-            
-    return 0
+    if (order == "input"):
+        input_print(block_hash)
+    else:
+        output_print(block_hash)

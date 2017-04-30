@@ -4,27 +4,21 @@ at https://blockchain.info/api/blockchain_api
 """
 
 #referenced from blockchain data API - Python
-from . import util
+import utils
 import json
-
 
 def get_block(block_id, api_code=None):
     """Get a single block based on a block index or hash.
-    
     :param str block_id: block hash or index to look up
     :param str api_code: Blockchain.info API code (optional)
     :return: an instance of :class:`Block` class
-    """
-    
+    """    
     resource = 'rawblock/' + block_id
     if api_code is not None:
         resource += '?api_code=' + api_code
-    response = util.call_api(resource)
+    response = utils.call_api(resource)
     json_response = json.loads(response)
     return Block(json_response)
-
-
-
 
 class UnspentOutput:
     def __init__(self, o):
@@ -35,7 +29,6 @@ class UnspentOutput:
         self.value = o['value']
         self.value_hex = o['value_hex']
         self.confirmations = o['confirmations']
-
 
 class Address:
     def __init__(self, a):
@@ -92,8 +85,7 @@ class Transaction:
         
         if self.block_height is None:
             self.block_height = -1
-
-
+            
 class Block:
     def __init__(self, b):
         self.hash = b['hash']

@@ -1,4 +1,4 @@
-from blockchain import blockexplorer
+import blockexplorer
 import blocktx_data as b
 import etc_test as e
 

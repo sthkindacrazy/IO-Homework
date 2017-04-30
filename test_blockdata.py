@@ -1,5 +1,5 @@
 import blockexplorer
-import blocktx_data as b
+import blockdata as b
 import etc_test as e
 
 btcDigit = 100000000

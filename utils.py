@@ -19,4 +19,4 @@ def call_api(resource, data=None, base_url=BASE_URL):
         raise APIException(handle_response(e.read()), e.code)
 
 def handle_response(response):
-	return response.decode('utf-8')
+    return response.decode('UTF-8')

@@ -93,3 +93,12 @@ $ python3 -i test_blockdata.py
 
 ### 2번 문제에 대한 TEST
 - enc_test.py에서 unit test처럼 정규표현식 즉 hash-명령어 조합이 잘 되는지 parsing test를 하고 출력값에 대한 테스트는 실제 홈페이지에서 출력된 값들과 같은지 확인하는것으로 했다. 
+
+
+## Epilogue
+ - TEST code를 Formalize(?) 하는 것이 까다로웠다.
+ - 어떤 식으로 정형화된 테스트 코드를 쓰는 것이 좋을지 고민을 많이 할 수 있었다. 
+ - 제대로 된 IDE 없이 코딩을 해서 잔실수로 인해 commit을 좀 남발한 것처럼 보이게 된 것이 후회스럽다.
+ - 여러가지 조건 또 block chain에 대한 이해, 그리고 function이 중간에 제대로 된 값을 출력하는지 보기 위해 unit test는 많이 했는데 script 형태로 대부분 작성하고 test-code라고 불릴만한 형태로 정리하지 못했는데 어느 범주까지가 formalized test-code/function에 포함되어야 하는지 고민이다. 
+
+- 생각을 하면 할수록 더 고민되는 부분이 많긴 했지만 덕분에 재미있는 시간이 된 것 같습니다. 감사합니다.

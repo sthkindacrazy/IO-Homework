@@ -1,4 +1,5 @@
 import blockexplorer
+import re
 
 #block = blockexplorer.get_block("00000000000000000035d467f3e31a04bd9814bc0aec04b7e5877530b41b4450")
 
@@ -23,6 +24,14 @@ def values_test():
         for k in range(len(block.transactions[i].outputs)):
             val += block.transactions[i].outputs[k].value
     print(val)
+    
+def parse_test():
+    hash_value_order = "[aclkjadflkjweii001230100200] input"
+    l = hash_value_order.split()
+    print(l)
+    p = re.compile("[A-Za-z0-9]+")
+    print(p.search(l[0]).group())
+    print(l[1])
     
 def tot_tx_val(block_hash):
     block = blockexplorer.get_block(block_hash)

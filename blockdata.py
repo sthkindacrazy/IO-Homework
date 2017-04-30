@@ -18,7 +18,7 @@ btcDigit = 100000000
 #compensation BTC for transactions
 compBTC = 125000000
 
-def tot_tx(block_hash):
+def tot_tx(block):
     return block.n_tx
 
 #total produced BTC-> values by transactions, divided by total transactions

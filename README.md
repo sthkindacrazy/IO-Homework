@@ -89,7 +89,7 @@ $ python3 -i test_blockdata.py
 ### 2번 문제에 대한 기타 고민
 - 처음에는 input과 output 출력을 모두 하나의 function, in_out_valPrint(hash_order)안에다 넣었다.
 - input값과 output 출력은 후에도 각각 활용가능성이 높다고 생각, 따로 input_print, output_print로 만들었다.
-- 이 때 각각의 값들을 받아줄 때 list를 사용하는데, set은 indexing이 되지 않으며 tuple도 list에 비해 불편하다. 후에 DB 같은 것에 넣는 작업을 한다면 ist로 받아주는게 나을 것이라 가정했다. 
+- 이 때 각각의 값들을 받아줄 때 list를 사용하는데, set은 indexing이 되지 않으며 tuple도 list에 비해 불편하다. 후에 DB 같은 것에 넣는 작업을 한다면 list로 받아주는게 나을 것이라 가정했다. 
 
 ### 2번 문제에 대한 TEST
 - enc_test.py에서 unit test처럼 정규표현식 즉 hash-명령어 조합이 잘 되는지 parsing test를 하고 출력값에 대한 테스트는 실제 홈페이지에서 출력된 값들과 같은지 확인하는것으로 했다. 
